@@ -5,7 +5,7 @@
       <Methods>
         <Method javamethod="TwoExample.TwoExampleService.JavaEchoPersonInfo" name="JavaEchoPersonInfo" querytype="java"/>
         <Method method="onTwoExampleCppEchoPersonInfo" name="CppEchoPersonInfo" plugin="libTwoExampleService.so" querytype="cpp"/>
-        <Method name="RoxieEchoPersonInfo" queryname="RoxieEchoPersonInfo" querytype="roxie" url="http://localhost:9876/roxie">
+        <Method name="RoxieEchoPersonInfo" queryname="RoxieEchoPersonInfo" querytype="roxie" url="http://roxie:9876/roxie">
           <xsdl:CustomRequestTransform target="soap:Body/{$query}">
             <xsdl:choose>
               <xsdl:otherwise>

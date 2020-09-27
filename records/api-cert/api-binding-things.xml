@@ -1,92 +1,57 @@
 <EsdlBundle>
-  <Binding espbinding="static_binding" espprocess="desdl_esp" id="desdl_esp.OneExample3" port="8880">
-    <Definition esdlservice="OneExample3" id="oneexample3.1" name="oneexample3">
+  <Binding espbinding="static_binding" espprocess="desdl_esp" id="desdl_esp.IndustrialGlass" port="8880">
+    <Definition esdlservice="IndustrialGlass" id="IndustrialGlass.1" name="IndustrialGlass">
       <LogTransforms/>
       <Methods>
-        <xsdl:CustomRequestTransform>
-          <xsdl:choose>
-            <xsdl:when test="$clientversion=1.9">
-              <xsdl:SetValue target="Row/Name/First" value="&apos;service&apos;"/>
-            </xsdl:when>
-            <xsdl:otherwise>
-              <xsdl:SetValue target="Row/Name/Last" value="&apos;zz&apos;"/>
-            </xsdl:otherwise>
-          </xsdl:choose>
-        </xsdl:CustomRequestTransform>
-        <Method name="RoxieEchoPersonInfo3" queryname="RoxieEchoPersonInfo3" querytype="roxie" url="http://localhost:9876/roxie">
-          <xsdl:CustomRequestTransform target="soap:Body/{$query}">
-            <xsdl:choose>
-              <xsdl:when test="$clientversion=1.9">
-                <xsdl:SetValue target="vertest" value="&apos;v1.9&apos;"/>
-                <xsdl:SetValue target="RoxieEchoPersonInfo3Request/Row/Name/First" value="&apos;v1.9&apos;"/>
-              </xsdl:when>
-              <xsdl:otherwise>
-                <xsdl:SetValue target="vertest" value="concat(&apos;v&apos;, $clientversion)"/>
-                <xsdl:SetValue target="RoxieEchoPersonInfo3Request/Row/Name/Last" value="concat(&apos;v&apos;, $clientversion)"/>
-              </xsdl:otherwise>
-            </xsdl:choose>
-          </xsdl:CustomRequestTransform>
+        <Method name="GlassInfo" queryname="glass_info" querytype="roxie" url="http://roxie:9876/roxie">
         </Method>
       </Methods>
     </Definition>
   </Binding>
   <Definitions>
 <![CDATA[
-    <esxdl name="OneExample3">
-      <EsdlStruct name="NameInfo">
-        <EsdlElement default="Joe" name="First" type="string"/>
-        <EsdlElement default="Doe" name="Last" type="string"/>
-        <EsdlArray item_tag="Alias" name="Aliases" type="string"/>
-      </EsdlStruct>
-      <EsdlStruct name="AddressInfo">
-        <EsdlElement name="Line1" type="string"/>
-        <EsdlElement name="Line2" type="string"/>
-        <EsdlElement name="City" type="string"/>
-        <EsdlElement name="State" type="string"/>
-        <EsdlElement default="33487" name="Zip" type="int"/>
-        <EsdlEnum default="Home" enum_type="AddressType" name="type"/>
-      </EsdlStruct>
-      <EsdlResponse name="CppEchoPersonInfoResponse">
-        <EsdlElement default="0" name="count" type="int"/>
-        <EsdlElement complex_type="NameInfo" name="Name"/>
-        <EsdlArray item_tag="Address" name="Addresses" type="AddressInfo"/>
-      </EsdlResponse>
-      <EsdlResponse name="JavaEchoPersonInfoResponse">
-        <EsdlElement default="0" name="count" type="int"/>
-        <EsdlElement complex_type="NameInfo" name="Name"/>
-        <EsdlArray item_tag="Address" name="Addresses" type="AddressInfo"/>
-      </EsdlResponse>
-      <EsdlResponse name="OneExample3PingResponse"/>
-      <EsdlResponse name="RoxieEchoPersonInfo3Response">
-        <EsdlElement default="0" name="count" type="int"/>
-        <EsdlElement complex_type="NameInfo" name="Name"/>
-        <EsdlArray item_tag="Address" name="Addresses" type="AddressInfo"/>
-      </EsdlResponse>
-      <EsdlEnumType base_type="string" name="AddressType">
-        <EsdlEnumItem enum="Home" name="HOME"/>
-        <EsdlEnumItem enum="Work" name="WORK"/>
-        <EsdlEnumItem enum="Hotel" name="HOTEL"/>
-      </EsdlEnumType>
-      <EsdlService name="OneExample3" version="0.01">
-        <EsdlMethod name="CppEchoPersonInfo" request_type="CppEchoPersonInfoRequest" response_type="CppEchoPersonInfoResponse"/>
-        <EsdlMethod name="JavaEchoPersonInfo" request_type="JavaEchoPersonInfoRequest" response_type="JavaEchoPersonInfoResponse"/>
-        <EsdlMethod auth_feature="none" name="Ping" request_type="OneExample3PingRequest" response_type="OneExample3PingResponse"/>
-        <EsdlMethod name="RoxieEchoPersonInfo3" request_type="RoxieEchoPersonInfo3Request" response_type="RoxieEchoPersonInfo3Response"/>
-      </EsdlService>
-      <EsdlRequest name="CppEchoPersonInfoRequest">
-        <EsdlElement complex_type="NameInfo" name="Name"/>
-        <EsdlArray item_tag="Address" name="Addresses" type="AddressInfo"/>
-      </EsdlRequest>
-      <EsdlRequest name="JavaEchoPersonInfoRequest">
-        <EsdlElement complex_type="NameInfo" name="Name"/>
-        <EsdlArray item_tag="Address" name="Addresses" type="AddressInfo"/>
-      </EsdlRequest>
-      <EsdlRequest name="OneExample3PingRequest"/>
-      <EsdlRequest name="RoxieEchoPersonInfo3Request">
-        <EsdlElement complex_type="NameInfo" name="Name"/>
-        <EsdlArray item_tag="Address" name="Addresses" type="AddressInfo"/>
-      </EsdlRequest>
-    </esxdl>
+<esxdl name="IndustrialGlass">
+	<EsdlEnumType name='GlassType' base_type='string'>
+		<EsdlEnumItem name='building_windows_float_processed' enum='Building float'/>
+		<EsdlEnumItem name='building_windows_non_float_processed' enum='Building non-float'/>
+		<EsdlEnumItem name='vehicle_windows_float_processed' enum='Vehicle float'/>
+		<EsdlEnumItem name='vehicle_windows_non_float_processed' enum='Vehicle non-float'/>
+		<EsdlEnumItem name='containers' enum='containers'/>
+		<EsdlEnumItem name='tableware' enum='tableware'/>
+		<EsdlEnumItem name='headlamps' enum='headlamps'/>
+	</EsdlEnumType>
+	<EsdlStruct name='GlassComposition'>
+		<EsdlElement name='Sodium' type='string' ecl_type='UDECIMAL5_2'/>
+		<EsdlElement name='Magnesium' type='string' ecl_type='UDECIMAL5_2'/>
+		<EsdlElement name='Aluminum' type='string' ecl_type='UDECIMAL5_2'/>
+		<EsdlElement name='Silicon' type='string' ecl_type='UDECIMAL5_2'/>
+		<EsdlElement name='Potassium' type='string' ecl_type='UDECIMAL5_2'/>
+		<EsdlElement name='Calcium' type='string' ecl_type='UDECIMAL5_2'/>
+		<EsdlElement name='Barium' type='string' ecl_type='UDECIMAL5_2'/>
+		<EsdlElement name='Iron' type='string' ecl_type='UDECIMAL5_2'/>
+	</EsdlStruct>
+	<EsdlStruct name='GlassSample'>
+		<EsdlElement name='Id' type='unsigned'/>
+		<EsdlElement name='RefractiveIndex' type='string' ecl_type='UDECIMAL7_5'/>
+		<EsdlElement name='Composition' complex_type='GlassComposition'/>
+		<EsdlEnum name='TypeOfGlass' enum_type='GlassType' default='building_windows_float_processed'/>
+	</EsdlStruct>
+	<EsdlResponse name='GlassInfoResponse'>
+		<EsdlArray name='GlassSamples' type='GlassSample' item_tag='Sample' max_count='300'/>
+	</EsdlResponse>
+	<EsdlRequest name='GlassInfoRequest'>
+		<EsdlElement name='IncludeComposition' type='bool' default='0'/>
+		<EsdlEnum name='TypeOfGlass' enum_type='GlassType' default='building_windows_float_processed'/>
+	</EsdlRequest>
+	<EsdlRequest name='IndustrialGlassPingRequest'>
+	</EsdlRequest>
+	<EsdlResponse name='IndustrialGlassPingResponse'>
+	</EsdlResponse>
+	<EsdlService name='IndustrialGlass' version='0.01'>
+		<EsdlMethod name='GlassInfo' request_type='GlassInfoRequest' response_type='GlassInfoResponse' />
+		<EsdlMethod name='Ping' request_type='IndustrialGlassPingRequest' response_type='IndustrialGlassPingResponse' auth_feature='none'/>
+	</EsdlService>
+</esxdl>
 ]]>
   </Definitions>
 </EsdlBundle>

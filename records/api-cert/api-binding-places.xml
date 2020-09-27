@@ -13,7 +13,7 @@
             </xsdl:otherwise>
           </xsdl:choose>
         </xsdl:CustomRequestTransform>
-        <Method name="RoxieEchoPersonInfo2" queryname="RoxieEchoPersonInfo2" querytype="roxie" url="http://localhost:9876/roxie">
+        <Method name="RoxieEchoPersonInfo2" queryname="RoxieEchoPersonInfo2" querytype="roxie" url="http://roxie:9876/roxie">
           <xsdl:CustomRequestTransform target="soap:Body/{$query}">
             <xsdl:choose>
               <xsdl:when test="$clientversion=1.9">
