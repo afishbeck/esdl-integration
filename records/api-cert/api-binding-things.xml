@@ -3,7 +3,7 @@
     <Definition esdlservice="IndustrialGlass" id="IndustrialGlass.1" name="IndustrialGlass">
       <LogTransforms/>
       <Methods>
-        <Method name="GlassInfo" queryname="glass_info" querytype="roxie" url="http://roxie:9876/roxie">
+        <Method name="GlassInfo" queryname="GlassInfo" querytype="roxie" url="http://roxie:9876/roxie">
         </Method>
       </Methods>
     </Definition>
