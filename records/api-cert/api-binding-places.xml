@@ -46,12 +46,12 @@
         <EsdlElement default="33487" name="Zip" type="int"/>
         <EsdlEnum default="Home" enum_type="AddressType" name="type"/>
       </EsdlStruct>
-      <EsdlResponse name="CppEchoPersonInfoResponse">
+      <EsdlResponse name="TestInfoResponse">
         <EsdlElement default="0" name="count" type="int"/>
         <EsdlElement complex_type="NameInfo" name="Name"/>
         <EsdlArray item_tag="Address" name="Addresses" type="AddressInfo"/>
       </EsdlResponse>
-      <EsdlResponse name="JavaEchoPersonInfoResponse">
+      <EsdlResponse name="OtherInfoResponse">
         <EsdlElement default="0" name="count" type="int"/>
         <EsdlElement complex_type="NameInfo" name="Name"/>
         <EsdlArray item_tag="Address" name="Addresses" type="AddressInfo"/>
@@ -68,16 +68,16 @@
         <EsdlEnumItem enum="Hotel" name="HOTEL"/>
       </EsdlEnumType>
       <EsdlService name="ThreeExample2" version="0.01">
-        <EsdlMethod name="CppEchoPersonInfo" request_type="CppEchoPersonInfoRequest" response_type="CppEchoPersonInfoResponse"/>
-        <EsdlMethod name="JavaEchoPersonInfo" request_type="JavaEchoPersonInfoRequest" response_type="JavaEchoPersonInfoResponse"/>
+        <EsdlMethod name="TestInfo" request_type="TestInfoRequest" response_type="TestInfoResponse"/>
+        <EsdlMethod name="OtherInfo" request_type="OtherInfoRequest" response_type="OtherInfoResponse"/>
         <EsdlMethod auth_feature="none" name="Ping" request_type="ThreeExample2PingRequest" response_type="ThreeExample2PingResponse"/>
         <EsdlMethod name="RoxieEchoPersonInfo2" request_type="RoxieEchoPersonInfo2Request" response_type="RoxieEchoPersonInfo2Response"/>
       </EsdlService>
-      <EsdlRequest name="CppEchoPersonInfoRequest">
+      <EsdlRequest name="TestInfoRequest">
         <EsdlElement complex_type="NameInfo" name="Name"/>
         <EsdlArray item_tag="Address" name="Addresses" type="AddressInfo"/>
       </EsdlRequest>
-      <EsdlRequest name="JavaEchoPersonInfoRequest">
+      <EsdlRequest name="OtherInfoRequest">
         <EsdlElement complex_type="NameInfo" name="Name"/>
         <EsdlArray item_tag="Address" name="Addresses" type="AddressInfo"/>
       </EsdlRequest>
